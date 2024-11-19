@@ -20,7 +20,7 @@ public class SkillController {
     @Autowired
     private SkillRepository skillRepository;
 
-    @GetMapping
+    @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("employers", skillRepository.findAll());
         return "skills/index";
@@ -37,10 +37,11 @@ public class SkillController {
                                       Errors errors, Model model) {
 
         if (errors.hasErrors()) {
+            model.addAttribute(new Skill());
             return "skills/add";
         }
         skillRepository.save(newSkill);
-        return "redirect:";
+        return "skills";
     }
 
     @GetMapping("view/{skillId}")
@@ -52,7 +53,7 @@ public class SkillController {
             model.addAttribute("skill", skill);
             return "skills/view";
         } else {
-            return "redirect:../";
+            return "redirect:/skills";
         }
     }
 }
