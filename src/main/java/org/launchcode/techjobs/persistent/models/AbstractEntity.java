@@ -13,11 +13,11 @@ import java.util.Objects;
 public abstract class AbstractEntity {
     @Id
     @GeneratedValue
-    private int id;
+    public int id;
 
     @NotBlank(message= "Entry cannot be blank")
     @Size(max = 100, message = "Entry must not exceed 100 characters.")
-    private String name;
+    public String name;
 
     public int getId() {
         return id;
