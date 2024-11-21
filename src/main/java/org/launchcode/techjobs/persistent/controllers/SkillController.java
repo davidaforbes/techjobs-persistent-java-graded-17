@@ -3,6 +3,7 @@ package org.launchcode.techjobs.persistent.controllers;
 
 import jakarta.validation.Valid;
 import org.launchcode.techjobs.persistent.models.Skill;
+import org.launchcode.techjobs.persistent.models.data.JobRepository;
 import org.launchcode.techjobs.persistent.models.data.SkillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,9 @@ public class SkillController {
 
     @Autowired
     private SkillRepository skillRepository;
+
+    @Autowired
+    private JobRepository jobRepository;
 
     @GetMapping("/")
     public String index(Model model) {
@@ -50,6 +54,7 @@ public class SkillController {
         if (optSkill.isPresent()) {
             Skill skill = (Skill) optSkill.get();
             model.addAttribute("skill", skill);
+
             return "skills/view";
         } else {
             return "redirect:/add";
